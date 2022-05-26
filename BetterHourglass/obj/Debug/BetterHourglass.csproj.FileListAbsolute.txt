@@ -1,0 +1,17 @@
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.csprojAssemblyReference.cache
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.csproj.CoreCompileInputs.cache
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\BetterHourglass.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\BetterHourglass.pdb
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\0Harmony.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\Assembly-CSharp.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\BepInEx.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.CoreModule.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.InputLegacyModule.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.Physics2DModule.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.UI.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.UIModule.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.csproj.CopyComplete
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.pdb
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.UnityWebRequestWWWModule.dll
