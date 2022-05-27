@@ -66,8 +66,12 @@
     <Reference Include="UnityEngine.UIModule">
       <HintPath>..\Libraries\UnityEngine.UIModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-      <HintPath>..\Libraries\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\Libraries\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,3 @@
-D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.csprojAssemblyReference.cache
 D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.csproj.CoreCompileInputs.cache
 D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\BetterHourglass.dll
 D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\BetterHourglass.pdb
@@ -15,3 +14,6 @@ D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.cs
 D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.dll
 D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.pdb
 D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.UnityWebRequestWWWModule.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\obj\Debug\BetterHourglass.csprojAssemblyReference.cache
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.UnityWebRequestModule.dll
+D:\DEV\WorldBoxMods\BetterHourglass\BetterHourglass\bin\Debug\UnityEngine.UnityWebRequestTextureModule.dll

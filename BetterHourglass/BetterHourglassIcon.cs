@@ -5,35 +5,99 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace BetterHourglass
 {
-    public static class BetterHourglassIcon
+    public class BetterHourglassIcon : MonoBehaviour
     {
-        public static void create(MonoBehaviour monoBehaviour)
+        public int timeScale = 1;
+        private static bool expanded = false;
+        private static float space = 10;
+        private static List<GameObject> childs = new List<GameObject>();
+        public static void create()
         {
-            /*
-            Debug.Log("create");
-            Debug.Log("created object");
-            Debug.Log("added components");
-            Debug.Log("gameObject: "+gameObject);
-            Debug.Log("gameObject.transform: " + gameObject.transform);
-            Debug.Log("canvas: " + canvas);
-            Debug.Log("canvas.name: " + canvas.name);
-            */
-            //Debug.Log("a: " + ((PowersTab)GameObject.FindObjectOfType(typeof(PowersTab))).transform.GetComponentInParent<Canvas>().gameObject.name);
-            //Debug.Log("b: " + ((PowersTab)GameObject.FindObjectOfType(typeof(PowersTab))).transform.GetComponentInParent<Canvas>().transform.parent.GetComponentInParent<Canvas>().gameObject.name);
+            GameObject main = createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.BETTER_HOURGLASS], new Vector3(), -4, 1);
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x1], new Vector3(), 1, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x2], new Vector3(), 2, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x5], new Vector3(), 5, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x10], new Vector3(), 10, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x20], new Vector3(), 20, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x50], new Vector3(), 50, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x100], new Vector3(), 100, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x200], new Vector3(), 200, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x500], new Vector3(), 500, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x1k], new Vector3(), 1000, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x2k], new Vector3(), 2000, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x5k], new Vector3(), 5000, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x10k], new Vector3(), 10000, 0.5F));
+            childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x20k], new Vector3(), 20000, 0.5F));
+            main.transform.position = new Vector3(Screen.width - (main.GetComponent<RectTransform>().rect.width/2 + space), Screen.height - (main.GetComponent<RectTransform>().rect.height / 2 + space));
+
+            for(int i = 0; i < childs.Count; i++)
+            { 
+                GameObject lastGameObject = i-1 >= 0 ? childs[i - 1] : main;
+                childs[i].transform.position = new Vector3(Screen.width - (childs[i].GetComponent<RectTransform>().rect.width / 2 + space), (lastGameObject.transform.position.y - lastGameObject.GetComponent<RectTransform>().rect.height) - 0) ;
+                
+                childs[i].SetActive(false);
+            }
+        }
+        public static GameObject createIcon(Transform parent, Sprite sprite, Vector3 position, int timeScale, float a)
+        {
             GameObject gameObject = new GameObject();
             gameObject.AddComponent<RectTransform>().SetAnchor(AnchorPresets.TopRight);
             gameObject.AddComponent<CanvasRenderer>();
-            gameObject.AddComponent<Image>().sprite = Sprites.sprites[Sprites.ESprite.BETTER_HOURGLASS];
-            gameObject.AddComponent<Button>();
+            gameObject.AddComponent<Image>().sprite = sprite;
+            gameObject.GetComponent<Image>().color = new Color(gameObject.GetComponent<Image>().color.r, gameObject.GetComponent<Image>().color.g, gameObject.GetComponent<Image>().color.b, a);
+            if(timeScale != -4)
+            {
+                gameObject.AddComponent<Button>().onClick.AddListener(delegate { childClick(timeScale); });
+                gameObject.AddComponent<BetterHourglassIcon>().timeScale = timeScale;
+            }
+            else
+            {
+                gameObject.AddComponent<Button>().onClick.AddListener(mainClick);
+            }
             
-            gameObject.transform.SetParent(BetterHourglass.canvas.transform);
-            
-            gameObject.transform.position = new Vector3(Screen.width-gameObject.GetComponent<RectTransform>().rect.width, Screen.height- gameObject.GetComponent<RectTransform>().rect.height, 0);
+
+            gameObject.transform.SetParent(parent);
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(70, 70);
+            gameObject.transform.position = new Vector3(position.x, position.y, 0);
+            return gameObject;
         }
-        
+        public static void mainClick()
+        {
+            bool b = !expanded;
+            expanded = b;
+            for (int i = 0; i < childs.Count; i++)
+            {
+                updateChild(childs[i]);
+                childs[i].SetActive(b);
+            }
+        }
+        public static void updateChilds()
+        {
+            for (int i = 0; i < childs.Count; i++)
+            {
+                updateChild(childs[i]);
+            }
+        }
+        public static void updateChild(GameObject child)
+        {
+            if (Config.timeScale == child.GetComponent<BetterHourglassIcon>().timeScale)
+            {
+                child.GetComponent<Image>().color = new Color(child.GetComponent<Image>().color.r, child.GetComponent<Image>().color.g, child.GetComponent<Image>().color.b, 1);
+            }
+            else
+            {
+                child.GetComponent<Image>().color = new Color(child.GetComponent<Image>().color.r, child.GetComponent<Image>().color.g, child.GetComponent<Image>().color.b, 0.5F);
+            }
+        }
+        public static void childClick(int timeScale)
+        {
+            Config.timeScale = timeScale;
+            updateChilds();
+        }
     }
 }
