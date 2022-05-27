@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace BetterHourglass
@@ -18,23 +19,7 @@ namespace BetterHourglass
         private static float scale = 65;
         private static List<GameObject> childs = new List<GameObject>();
         private static GameObject main = null;
-        public static void update()
-        {
-            if(Input.GetKey(KeyCode.LeftShift))
-            {
-                if (Vector2.Distance(Camera.main.ScreenToWorldPoint(main.transform.position), Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 20)
-                {
-                    if (Input.mouseScrollDelta.y > 0)
-                    {
-                        updateScale(scale + 2);
-                    }
-                    if (Input.mouseScrollDelta.y < 0)
-                    {
-                        updateScale(scale - 2);
-                    }
-                }
-            }
-        }
+        
         public static void create()
         {
             if(PlayerPrefs.HasKey("betterHourglassScale"))
@@ -42,6 +27,11 @@ namespace BetterHourglass
                 scale = PlayerPrefs.GetFloat("betterHourglassScale");
             }
             main = createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.BETTER_HOURGLASS], new Vector3(), -4, 1);
+            EventTrigger eventTrigger = main.AddComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.Scroll;
+            entry.callback.AddListener((data) => { onScroll(); });
+            eventTrigger.triggers.Add(entry);
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x1], new Vector3(), 1, 0.5F));
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x2], new Vector3(), 2, 0.5F));
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x5], new Vector3(), 5, 0.5F));
@@ -136,6 +126,20 @@ namespace BetterHourglass
         {
             Config.timeScale = timeScale;
             updateChilds();
+        }
+        public static void onScroll()
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Input.mouseScrollDelta.y > 0)
+                {
+                    updateScale(scale + 2);
+                }
+                if (Input.mouseScrollDelta.y < 0)
+                {
+                    updateScale(scale - 2);
+                }
+            }
         }
     }
 }

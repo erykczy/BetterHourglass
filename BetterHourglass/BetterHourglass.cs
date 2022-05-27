@@ -37,10 +37,6 @@ namespace BetterHourglass
 
                 }
             }
-            else
-            {
-                BetterHourglassIcon.update();
-            }
         }
     }
 }
