@@ -30,7 +30,7 @@ namespace BetterHourglass
                 try
                 {
                     canvas = ((PowersTab)GameObject.FindObjectOfType(typeof(PowersTab))).transform.GetComponentInParent<Canvas>().transform.parent.GetComponentInParent<Canvas>().transform.parent.GetComponentInParent<Canvas>().gameObject;
-                    BetterHourglassIcon.create(this);
+                    BetterHourglassIcon.create();
                 }
                 catch
                 {
