@@ -23,9 +23,9 @@ namespace BetterHourglass
             Sprites.setup(this);
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
-            if(canvas == null)
+            if (canvas == null)
             {
                 try
                 {
@@ -34,8 +34,12 @@ namespace BetterHourglass
                 }
                 catch
                 {
-                    
+
                 }
+            }
+            else
+            {
+                BetterHourglassIcon.update();
             }
         }
     }

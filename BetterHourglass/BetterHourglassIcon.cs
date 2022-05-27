@@ -15,10 +15,33 @@ namespace BetterHourglass
         public int timeScale = 1;
         private static bool expanded = false;
         private static float space = 10;
+        private static float scale = 65;
         private static List<GameObject> childs = new List<GameObject>();
+        private static GameObject main = null;
+        public static void update()
+        {
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Vector2.Distance(Camera.main.ScreenToWorldPoint(main.transform.position), Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 20)
+                {
+                    if (Input.mouseScrollDelta.y > 0)
+                    {
+                        updateScale(scale + 2);
+                    }
+                    if (Input.mouseScrollDelta.y < 0)
+                    {
+                        updateScale(scale - 2);
+                    }
+                }
+            }
+        }
         public static void create()
         {
-            GameObject main = createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.BETTER_HOURGLASS], new Vector3(), -4, 1);
+            if(PlayerPrefs.HasKey("betterHourglassScale"))
+            {
+                scale = PlayerPrefs.GetFloat("betterHourglassScale");
+            }
+            main = createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.BETTER_HOURGLASS], new Vector3(), -4, 1);
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x1], new Vector3(), 1, 0.5F));
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x2], new Vector3(), 2, 0.5F));
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x5], new Vector3(), 5, 0.5F));
@@ -34,13 +57,28 @@ namespace BetterHourglass
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x10k], new Vector3(), 10000, 0.5F));
             childs.Add(createIcon(BetterHourglass.canvas.transform, Sprites.sprites[Sprites.ESprite.x20k], new Vector3(), 20000, 0.5F));
             main.transform.position = new Vector3(Screen.width - (main.GetComponent<RectTransform>().rect.width/2 + space), Screen.height - (main.GetComponent<RectTransform>().rect.height / 2 + space));
+            for (int i = 0; i < childs.Count; i++)
+            {
+                GameObject lastGameObject = i - 1 >= 0 ? childs[i - 1] : main;
+                childs[i].transform.position = new Vector3(Screen.width - (childs[i].GetComponent<RectTransform>().rect.width / 2 + space), (lastGameObject.transform.position.y - lastGameObject.GetComponent<RectTransform>().rect.height) - 0);
 
-            for(int i = 0; i < childs.Count; i++)
-            { 
-                GameObject lastGameObject = i-1 >= 0 ? childs[i - 1] : main;
-                childs[i].transform.position = new Vector3(Screen.width - (childs[i].GetComponent<RectTransform>().rect.width / 2 + space), (lastGameObject.transform.position.y - lastGameObject.GetComponent<RectTransform>().rect.height) - 0) ;
-                
                 childs[i].SetActive(false);
+            }
+        }
+        private static void updateScale(float newScale)
+        {
+            scale = newScale;
+            PlayerPrefs.SetFloat("betterHourglassScale", scale);
+            main.GetComponent<RectTransform>().sizeDelta = new Vector2(scale, scale);
+            main.transform.position = new Vector3(Screen.width - (main.GetComponent<RectTransform>().rect.width / 2 + space), Screen.height - (main.GetComponent<RectTransform>().rect.height / 2 + space));
+            for (int i = 0; i < childs.Count; i++)
+            {
+                childs[i].GetComponent<RectTransform>().sizeDelta = new Vector2(scale, scale);
+            }
+            for (int i = 0; i < childs.Count; i++)
+            {
+                GameObject lastGameObject = i - 1 >= 0 ? childs[i - 1] : main;
+                childs[i].transform.position = new Vector3(Screen.width - (childs[i].GetComponent<RectTransform>().rect.width / 2 + space), (lastGameObject.transform.position.y - lastGameObject.GetComponent<RectTransform>().rect.height) - 0);
             }
         }
         public static GameObject createIcon(Transform parent, Sprite sprite, Vector3 position, int timeScale, float a)
@@ -62,7 +100,7 @@ namespace BetterHourglass
             
 
             gameObject.transform.SetParent(parent);
-            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(70, 70);
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(scale, scale);
             gameObject.transform.position = new Vector3(position.x, position.y, 0);
             return gameObject;
         }
