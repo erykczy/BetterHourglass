@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31205.134
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterHourglass", "BetterHourglass\BetterHourglass.csproj", "{9B267223-0598-4057-B79D-3747DD206409}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterHourglass", "BetterHourglass.csproj", "{9B267223-0598-4057-B79D-3747DD206409}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C775A6B2-8136-40AB-B6CC-A0C7F2144A3F}
+		SolutionGuid = {44BAB10C-ECBE-4B2A-AF83-74166790FF4E}
 	EndGlobalSection
 EndGlobal
