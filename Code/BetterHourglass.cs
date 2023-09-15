@@ -16,11 +16,10 @@ namespace BetterHourglass
         public const string pluginName = "Better Hourglass";
         public const string pluginVersion = "0.1.0";
         public static GameObject canvas;
-        //public BetterHourglassWindow betterHourglassWindow;
 
         public void Awake()
         {
-            Sprites.setup(this);
+            Sprites.setup();
         }
 
         public void FixedUpdate()
